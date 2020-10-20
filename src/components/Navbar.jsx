@@ -8,13 +8,13 @@ const Navbar = (props) => {
     }
 
     return (
-        <div className="Navbar__container">
-            <ul className="Navbar__links">
-                <li className="Navbar__btn">Home</li>
-                <li className="Navbar__btn">Articles</li>
-                <li className="Navbar__btn">Topics</li>{/* This will eventually be a dropdown button */}
+        <div className="navbar__container">
+            <ul className="navbar__links">
+                <li className="navbar__btn">Home</li>
+                <li className="navbar__btn">Articles</li>
+                <li className="navbar__btn">Topics</li>{/* This will eventually be a dropdown button */}
             </ul>
-            <button className="Navbar__user-btn">{userBtnText()} </button>
+            <button className="navbar__user-btn">{userBtnText()} </button>
         </div>
     )
 }

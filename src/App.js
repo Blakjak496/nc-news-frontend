@@ -17,7 +17,7 @@ function App() {
       <div className="App-page">
         <Router>
           <Articles path="/" />
-          {/* <Topics path="/topics" /> */}
+          <Articles path="/topics/:topic" useTopics={true} />
           {/* <Article path="/articles/:article_id" /> */}
         </Router>
       </div>
