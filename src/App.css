@@ -1,38 +1,108 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "page"
+    "footer";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App header {
   display: flex;
-  flex-direction: column;
+  width: 100vw;
+  height: 3rem;
+  background: black;
+  box-shadow: 0 8px 16px 4px grey;
+  grid-area: "header";
+}
+
+.App-footer {
+  display: flex;
+  grid-area: "footer";
+  width: 100vw;
+  height: 2rem;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-self: baseline;
+  background: black;
+  color: beige;
+  box-shadow: 0 -1px 16px 4px grey;
 }
 
-.App-link {
-  color: #61dafb;
+.App-footer--content {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5vmin;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-page {
+  display: flex;
+  width: 100vw;
+}
+
+.Navbar__container {
+  display: flex;
+  box-sizing: border-box;
+  height: 3rem;
+  width: 100%;
+  color: beige;
+  margin: 0;
+  padding: 0;
+}
+
+.Navbar__links {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0 3rem;
+  list-style: none;
+}
+
+.Navbar__btn {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 33%;
+  margin: 0;
+  padding: 4px 12px 4px 12px;
+}
+
+.Navbar__btn:hover {
+  color: black;
+  background: chartreuse;
+}
+
+.Navbar__user-btn {
+  display: flex;
+  box-sizing: border-box;
+  margin: 4px 3rem 4px auto;
+  padding: 4px 12px 4px 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.Articles__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.Articles__article {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.Articles__article-header {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px 4px 12px;
+}
+
+.Articles__article-header--title {
+  font-size: 1.7vmin;
 }
