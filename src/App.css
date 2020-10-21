@@ -41,7 +41,7 @@
   display: flex;
   width: 100vw;
   min-height: calc(100vh - 5rem);
-  padding-top: 5rem;
+  margin-top: 3rem;
 }
 
 .navbar__container {
@@ -72,6 +72,8 @@
   width: 33%;
   margin: 0;
   padding: 4px 12px 4px 12px;
+  text-decoration: none;
+  color: beige;
 }
 
 .navbar__btn:hover {
@@ -136,6 +138,8 @@
   display: flex;
   justify-content: left;
   font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
 }
 
 .articles__article-header--created {
@@ -179,8 +183,112 @@
   justify-content: center;
 }
 
+.articles__filter-btn > * {
+  pointer-events: none;
+}
+
 .articles__filter-btn--icon {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.article__container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100vw;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.article__page-header {
+  display: flex;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 5rem;
+  justify-content: left;
+  padding: 4px 12px 4px 12px;
+}
+
+.article__article-wrapper {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.article__article-content {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: fit-content;
+  min-width: 280px;
+  border: 1px solid black;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 4px 12px 4px 12px;
+  box-shadow: 0 -1px 16px 4px grey;
+}
+
+.article__article-body {
+}
+
+.article__comments--wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  min-width: 280px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px 4px 12px;
+}
+
+.article__comments--post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+}
+
+.article__comments-input-box {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+}
+
+.article__comments-input {
+  width: 90%;
+  height: 2rem;
+}
+
+.article__comments-input-btn {
+  width: 10%;
+}
+
+.article__comment {
+  box-sizing: border-box;
+  margin: 1rem 0 1rem 0;
+  padding: 4px 12px 4px 12px;
+  border: 1px solid black;
+  box-shadow: 0 -1px 16px 4px grey;
+}
+
+.vote__container {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.vote__btn-box {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.vote__icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }

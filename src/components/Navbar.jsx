@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from '@reach/router';
 
 const Navbar = (props) => {
 
@@ -10,11 +11,11 @@ const Navbar = (props) => {
     return (
         <div className="navbar__container">
             <ul className="navbar__links">
-                <li className="navbar__btn">Home</li>
-                <li className="navbar__btn">Articles</li>
-                <li className="navbar__btn">Topics</li>{/* This will eventually be a dropdown button */}
+                <Link className="navbar__btn" to="/">Home</Link>
+                <Link className="navbar__btn" to="/topics">Topics</Link>{/* This will eventually be a dropdown button */}
+                <Link className="navbar__btn" to="/">Articles</Link>
             </ul>
-            <button className="navbar__user-btn">{userBtnText()} </button>
+            <button className="navbar__user-btn" onClick={props.login}>{userBtnText()} </button>
         </div>
     )
 }

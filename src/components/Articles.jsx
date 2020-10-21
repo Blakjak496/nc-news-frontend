@@ -2,17 +2,25 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {BiChat, BiHeart, BiCookie, BiFootball, BiCode, BiTime} from 'react-icons/bi';
 import formatDate from './utils/utils';
+import { Link } from '@reach/router';
 
 const Articles = (props) => {
 
     const [articlesList, setArticlesList] = useState([]);
-    const [usingTopics, setUsingTopics] = useState(props.useTopics || false);
-    const [sortBy, setSortBy] = useState(null);
-    const [orderAsc, setOrderAsc] = useState(true);
+    const [sortBy, setSortBy] = useState('');
+    const [orderAsc, setOrderAsc] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://blakjak-nc-news-basic-api.herokuapp.com/api/${usingTopics ? 'articles?topic='+ props.topic : 'articles'}`)
+        const order = orderAsc ? 'asc':'desc';
+        axios.get(`https://blakjak-nc-news-basic-api.herokuapp.com/api/articles`, {
+            params: {
+                topic: props.topic,
+                sort_by: sortBy,
+                order: order
+            }
+        })
         .then(({data}) => {
+            
             const arr = data.articles.map(article => {
                 switch(article.topic) {
                     case 'cooking':
@@ -31,43 +39,17 @@ const Articles = (props) => {
             })
             setArticlesList(arr);
         })
-    }, [usingTopics]);
+    }, [orderAsc, sortBy, props.topic]);
 
-    useEffect(() => {
-        if (sortBy) {
-            const order = orderAsc ? 'asc' : 'desc';
-            axios.get(`https://blakjak-nc-news-basic-api.herokuapp.com/api/${usingTopics ? 'articles?topic='+ props.topic : 'articles'}&sort_by=${sortBy}&order=${order}`)
-            .then(({data}) => {
-                const arr = data.articles.map(article => {
-                    switch(article.topic) {
-                        case 'cooking':
-                            article.topicIcon = BiCookie;
-                            break;
-                        case 'football':
-                            article.topicIcon = BiFootball;
-                            break;
-                        case 'coding':
-                            article.topicIcon = BiCode;
-                            break;
-                        default:
-                            break;
-                    }
-                    return article;
-                })
-                setArticlesList(arr);
-            })
-
-        }
-    }, [orderAsc]);
     
         
     
     const sortList = (event) => {
-        if (event.target.id === sortBy) setOrderAsc(!orderAsc);
-        else {
-            setOrderAsc(true);
-            setSortBy(event.target.id);
-        } 
+        if (sortBy === event.target.id || !sortBy) setOrderAsc(!orderAsc);
+        else setOrderAsc(false);
+
+        setSortBy(event.target.id);
+         
     }
 //Still a work in progress
     return (
@@ -87,7 +69,7 @@ const Articles = (props) => {
                                 <p className="articles__article-header--created">{formatDate(article.created_at)} </p>
                             </span>
                             <span>
-                                <h3 className="articles__article-title">{article.title} </h3>
+                                <Link className="articles__article-title" to={`/articles/${article.article_id}`}>{article.title} </Link>
                             </span>
                             <span className="articles__article-footer">
                                 <p className="articles__article-footer--counter"><BiHeart/> {article.votes} </p>
