@@ -1,3 +1,24 @@
+html {
+  /* Blacks and Whites */
+  --light-background: #f0f3df;
+  --dark-background: #232320;
+  --light-low-contrast-neutral: #ddded6;
+  --dark-low-contrast-neutral: #30302c;
+  --light-high-contrast-neutral: #232320;
+  --dark-high-contrast-neutral: #f0f3df;
+  --light-high-contrast-muted: #30302c;
+  --dark-high-contrast-muted: #ddded6;
+
+  /* Denotive Colors */
+  --warning: #e82b2b;
+  --success: #2be869;
+  --light-disabled: #a7a7a7;
+  --dark-disabled: #646464;
+
+  /* Interactive Colors */
+  --primary: #ba1f31;
+}
+
 .App {
   text-align: center;
   display: grid;
@@ -232,9 +253,6 @@
   box-shadow: 0 -1px 16px 4px grey;
 }
 
-.article__article-body {
-}
-
 .article__comments--wrapper {
   display: flex;
   flex-direction: column;
@@ -264,6 +282,10 @@
   height: 2rem;
 }
 
+.article__comments-input--invalid {
+  border: 1px solid red;
+}
+
 .article__comments-input-btn {
   width: 10%;
 }
@@ -291,4 +313,82 @@
 .vote__icon {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.error__container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100vw;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.error__content {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.error__img {
+  display: flex;
+  width: 50vw;
+  height: 60vh;
+  background: url("./components/errors/404.jpg");
+  background-size: cover;
+}
+
+.loader__container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.topics__container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.topics__topic-info {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 50vw;
+  margin: 1rem 0 1rem 0;
+  padding: 4px 12px 4px 12px;
+  border: 1px solid black;
+  box-shadow: 0 -1px 16px 4px grey;
+}
+
+.topics__title {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  padding: 4px 12px 4px 12px;
+  margin: 0;
+  border-bottom: 1px solid black;
+}
+
+.topics__summary {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: left;
+  padding: 4px 12px 4px 12px;
+  margin: 0;
 }

@@ -3,12 +3,16 @@ import axios from 'axios';
 import {BiChat, BiHeart, BiCookie, BiFootball, BiCode, BiTime} from 'react-icons/bi';
 import formatDate from './utils/utils';
 import { Link } from '@reach/router';
+import Loader from './Loader';
+import ErrorPage from './errors/ErrorPage';
 
 const Articles = (props) => {
 
     const [articlesList, setArticlesList] = useState([]);
     const [sortBy, setSortBy] = useState('');
     const [orderAsc, setOrderAsc] = useState(false);
+    const [errorCode, setErrorCode] =useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const order = orderAsc ? 'asc':'desc';
@@ -38,6 +42,11 @@ const Articles = (props) => {
                 return article;
             })
             setArticlesList(arr);
+            setIsLoading(false);
+        })
+        .catch(({response}) => {
+            setErrorCode(response.status);
+            setIsLoading(false);
         })
     }, [orderAsc, sortBy, props.topic]);
 
@@ -51,8 +60,10 @@ const Articles = (props) => {
         setSortBy(event.target.id);
          
     }
-//Still a work in progress
-    return (
+
+    if (isLoading) return <Loader />
+    if (errorCode) return <ErrorPage code={errorCode} />
+    else return (
         <div className="articles__container">
             <div className="articles__list">
                 <span className="articles__filter-btn-box">

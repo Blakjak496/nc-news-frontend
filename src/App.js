@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import {Router} from '@reach/router';
 import Articles from './components/Articles';
 import Article from './components/Article';
+import ErrorPage from './components/errors/ErrorPage'
+import Topics from './components/Topics';
 
 function App() {
 
@@ -29,8 +31,10 @@ function App() {
       <div className="App-page">
         <Router>
           <Articles path="/" />
+          <Topics path="/topics" />
           <Articles path="/topics/:topic"  />
           <Article path="/articles/:article_id" user={activeUser} />
+          <ErrorPage default code={404} />
         </Router>
       </div>
       <div className="App-footer">
