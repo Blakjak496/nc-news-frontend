@@ -1,42 +1,24 @@
 import { Link } from '@reach/router';
-import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BiCode, BiCookie, BiFootball } from 'react-icons/bi';
+import ErrorPage from './errors/ErrorPage';
 import Loader from './Loader';
+import { getTopics } from './utils/api';
 
 const Topics = () => {
     const [topicsList, setTopicsList] = useState([]);
+    const [errorCode, setErrorCode] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        Axios.get(`https://blakjak-nc-news-basic-api.herokuapp.com/api/topics`)
-        .then(({data}) => {
-            const newList = [...data.topics];
-
-            newList.map((topic) => {
-                switch(topic.slug) {
-                    case 'cooking':
-                        topic.icon = BiCookie;
-                        break;
-                    case 'football':
-                        topic.icon = BiFootball;
-                        break;
-                    case 'coding':
-                        topic.icon = BiCode;
-                        break;
-                    default:
-                        break;
-                }
-            })
-            setTopicsList(data.topics);
-            setIsLoading(false)
-        })
-        .catch(({response}) => {
-            console.log(response.status)
+        getTopics({
+            setTopicsList,
+            setIsLoading,
+            setErrorCode
         })
     }, [])
 
     if (isLoading) return <Loader loading={isLoading} />
+    if (errorCode) return <ErrorPage code={errorCode} />
     else return (
         <div className="topics__container">
             {topicsList.map((topic) => {

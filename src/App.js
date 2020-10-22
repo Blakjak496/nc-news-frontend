@@ -19,9 +19,10 @@ function App() {
   }
 
   useEffect(() => {
+    
     if (loggedIn) setActiveUser(defaultUser.username)
     else setActiveUser(null);
-  },[loggedIn])
+  },[loggedIn, defaultUser])
 
   return (
     <div className="App">
