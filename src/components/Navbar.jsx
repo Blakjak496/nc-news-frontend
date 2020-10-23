@@ -9,6 +9,7 @@ const Navbar = (props) => {
     }
 
     const setActive = (event) => {
+        props.setPage(event.target.innerText);
         const buttons = Array.from(event.target.parentElement.children);
         buttons.forEach(button => {
             if (button !== event.target) button.classList.remove('navbar__btn--active');
@@ -19,7 +20,7 @@ const Navbar = (props) => {
     return (
         <div className="navbar__container">
             <ul className="navbar__links">
-                <Link onClick={setActive} className="navbar__btn navbar__btn--active" to="/">Home</Link>
+                <Link onClick={setActive} className="navbar__btn navbar__btn--active" to="/">Articles</Link>
                 <Link onClick={setActive} className="navbar__btn" to="/topics">Topics</Link>
             </ul>
             <button className="navbar__user-btn" onClick={props.login}>{userBtnText()} </button>

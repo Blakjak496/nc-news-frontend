@@ -58,6 +58,7 @@ const Topics = (props) => {
                         </div>
                     )
                 })}
+                <hr className="divider"/>
             </div>
             <Router primary={false}>
                 <ArticleList path="/:topic" articlesList={articlesList} sort={sortList} class={{list: "topics__articles"}} />
