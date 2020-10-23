@@ -132,15 +132,14 @@ const delComment = ({
 }
 
 const incVote = ({
-    isArticle,
+    type,
     parentId,
     increment,
     setVoteCount,
     voteCount,
     handleError
 }) => {
-    if (isArticle) {
-        axios.patch(`https://blakjak-nc-news-basic-api.herokuapp.com/api/articles/${parentId}`, {
+        axios.patch(`https://blakjak-nc-news-basic-api.herokuapp.com/api/${type}/${parentId}`, {
             inc_votes: increment,
         })
         .then((res) => {
@@ -149,17 +148,6 @@ const incVote = ({
         .catch(({response}) => {
             handleError(response.status);
         })
-    }
-    else {
-        axios.patch(`https://blakjak-nc-news-basic-api.herokuapp.com/api/comments/${parentId}`, {
-            inc_votes: increment,
-        })
-        .then((res) => {
-            setVoteCount(voteCount + increment);
-        }).catch(({response}) => {
-            handleError(response.status);
-        })
-    }
 }
 
 const getTopics = ({

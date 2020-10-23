@@ -12,7 +12,7 @@ const ArticleCard = ({article, setErrorCode}) => {
                 <span className="articles__article-header">
                     <p className="articles__article-header--topic">{article.topicIcon ? <article.topicIcon/> : null} {article.topic} </p>
                     <p className="articles__article-header--created">{articleDate} </p>
-                    <Vote count={article.votes} isArticle={true} parentId={article.article_id} handleError={setErrorCode} />
+                    <Vote count={article.votes} type="articles" parentId={article.article_id} handleError={setErrorCode} />
                 </span>
                 <span className="article__article-body">
                     <p>{article.body} </p>

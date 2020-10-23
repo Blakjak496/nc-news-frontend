@@ -23,12 +23,12 @@ const Vote = (props) => {
             const increment = Number(event.target.value);
             const parentId = props.parentId;
             const handleError = props.handleError;
-            const isArticle = props.isArticle;
+            const type = props.type;
     
             if (increment > 0) {
                 if (!votedUp.some(checkVoted)) {
                     incVote({
-                        isArticle,
+                        type,
                         parentId,
                         increment,
                         setVoteCount,
@@ -44,7 +44,7 @@ const Vote = (props) => {
             } else {
                 if (!votedDown.some(checkVoted)) {
                     incVote({
-                        isArticle,
+                        type,
                         parentId,
                         increment,
                         setVoteCount,

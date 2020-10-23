@@ -72,7 +72,7 @@ const CommentsCard = ({
                                         {comment.body}
                                     </span>
                                     <span className="articles__article-footer">
-                                        <Vote count={comment.votes} isArticle={false} parentId={comment.comment_id} handleError={setErrorCode} />
+                                        <Vote count={comment.votes} type="comments" parentId={comment.comment_id} handleError={setErrorCode} />
                                         {comment.author === user.activeUser ? <button id={comment.comment_id} onClick={deleteComment}>Delete</button> : null}
                                     </span>
                                 </div>
