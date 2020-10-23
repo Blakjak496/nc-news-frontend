@@ -31,12 +31,14 @@ html {
     "page"
     "footer";
   background: var(--light-background);
+  min-width: 280px;
+  min-height: 100vh;
 }
 
 .App header {
   display: flex;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 3rem;
   background: var(--dark-background);
   box-shadow: 0 8px 16px 4px var(--light-high-contrast-muted);
@@ -46,7 +48,7 @@ html {
 .App-footer {
   display: flex;
   grid-area: "footer";
-  width: 100vw;
+  width: 100%;
   height: 2rem;
   align-items: center;
   justify-content: center;
@@ -60,7 +62,8 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 1.5vmin;
+  font-size: 0.8rem;
+  color: var(--dark-high-contrast-muted);
 }
 
 .App-page {
@@ -88,7 +91,7 @@ html {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0 3rem;
+  margin: 0;
   list-style: none;
 }
 
@@ -99,7 +102,7 @@ html {
   justify-content: center;
   height: 100%;
   width: 33%;
-  margin: 0;
+  margin: 0 1rem;
   padding: 4px 12px;
   text-decoration: none;
   color: var(--light-background);
@@ -150,6 +153,7 @@ html {
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
+  min-height: 280px;
   margin: 1rem 0 1rem 0;
   padding: 0;
   border: 1px solid var(--dark-background);
@@ -197,7 +201,7 @@ html {
   align-items: center;
   justify-content: space-around;
   padding: 4px 12px;
-  margin: 0;
+  margin: auto 0 0 0;
   border-top: 1px solid var(--dark-background);
 }
 
@@ -207,10 +211,17 @@ html {
   font-size: 1rem;
 }
 
+.articles__article-footer--author {
+  margin: 0;
+  padding: 0;
+  font: 1rem;
+  color: var(--light-high-contrast-muted);
+}
+
 .articles__filter-btn-box {
   display: flex;
   box-sizing: border-box;
-  width: 50vw;
+  width: 100%;
   height: 2rem;
   justify-self: center;
   align-items: center;
@@ -251,7 +262,8 @@ html {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100vw;
+  width: 100;
+  min-width: 280px;
   margin: 0;
   justify-content: center;
   align-items: center;
@@ -268,28 +280,37 @@ html {
 
 .article__article-wrapper {
   display: flex;
+  flex-direction: column;
   width: 100vw;
-  justify-content: space-evenly;
+  min-width: 280px;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .article__article-content {
   display: flex;
   flex-direction: column;
-  width: 50vw;
-  height: fit-content;
-  min-width: 280px;
-  border: 1px solid var(--dark-background);
-  justify-content: space-between;
-  align-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 280px;
+  margin: 1rem 0 1rem 0;
   padding: 0;
+  border: 1px solid var(--dark-background);
   box-shadow: 0 -1px 16px 4px var(--light-high-contrast-muted);
+}
+
+.article__article-body {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px 12px;
 }
 
 .article__comments--wrapper {
   display: flex;
   flex-direction: column;
-  width: 25vw;
+  width: 25%;
   min-width: 280px;
   border: 1px solid var(--dark-background);
   justify-content: center;
@@ -389,11 +410,20 @@ html {
   justify-content: center;
 }
 
+.topics__wrapper {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+}
+
 .topics__container {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100vw;
+  width: 25vw;
+  min-width: 280px;
   height: 100%;
   margin: 0;
   justify-content: center;
@@ -403,7 +433,7 @@ html {
 .topics__topic-card {
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  width: 100%;
   min-width: 280px;
   justify-self: center;
 }
@@ -412,7 +442,8 @@ html {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 50vw;
+  width: 100%;
+  min-width: 280px;
   margin: 1rem 0 1rem 0;
   padding: 0;
   border: 1px solid var(--dark-background);
@@ -447,4 +478,40 @@ html {
   justify-content: left;
   padding: 4px 12px;
   margin: 0;
+  width: 100%;
+  min-width: 280px;
+}
+
+.topics__articles {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 50vw;
+  min-width: 280px;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 800px) and (min-device-width: 1200px) {
+  .articles__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 75vw;
+  }
+
+  .articles__article {
+    max-width: 480px;
+  }
+
+  .article__article-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100vw;
+  }
+
+  .article__article-content {
+    width: 50%;
+    margin-top: 0;
+  }
 }

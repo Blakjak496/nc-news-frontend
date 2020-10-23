@@ -32,8 +32,7 @@ function App() {
       <div className="App-page">
         <Router>
           <Articles path="/" />
-          <Topics path="/topics" />
-          <Articles path="/topics/:topic"  />
+          <Topics path="/topics/*" />
           <Article path="/articles/:article_id" user={activeUser} />
           <ErrorPage default code={404} />
         </Router>

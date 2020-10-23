@@ -18,6 +18,7 @@ const ArticleCard = ({article, setErrorCode}) => {
                     <p>{article.body} </p>
                 </span>
                 <span className="articles__article-footer">
+                    <p className="articles__article-footer--author">{article.author} </p>
                     <p className="articles__article-footer--counter"><BiChat/> {article.comment_count} </p>
                 </span>
         </div>

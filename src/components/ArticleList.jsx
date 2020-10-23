@@ -6,7 +6,7 @@ import {Link} from '@reach/router';
 const ArticleList = (props) => {
     
     return (
-        <div className="articles__list">
+        <div className={props.class ? props.class.list : "articles__list"}>
                 <span className="articles__filter-btn-box">
                     <p>sort</p>
                     <button className="articles__filter-btn" id="votes" onClick={props.sort}><BiHeart/></button>
@@ -25,6 +25,7 @@ const ArticleList = (props) => {
                             </span>
                             <span className="articles__article-footer">
                                 <p className="articles__article-footer--counter"><BiHeart/> {article.votes} </p>
+                                <p className="articles__article-footer--author">{article.author} </p>
                                 <p className="articles__article-footer--counter"><BiChat/> {article.comment_count} </p>
                             </span>
                         </div>
