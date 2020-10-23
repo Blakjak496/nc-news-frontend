@@ -543,7 +543,7 @@ html {
   margin: 1rem;
 }
 
-@media screen and (min-width: 800px) and (min-device-width: 1200px) {
+@media screen and (min-width: 1365px) {
   .articles__list {
     flex-direction: row;
     flex-wrap: wrap;
