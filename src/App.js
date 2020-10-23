@@ -6,7 +6,6 @@ import Articles from './components/Articles';
 import Article from './components/Article';
 import ErrorPage from './components/errors/ErrorPage'
 import Topics from './components/Topics';
-import formatDate from './components/utils/utils';
 
 function App() {
 
@@ -14,7 +13,6 @@ function App() {
   const [activeUser, setActiveUser] = useState(null);
   const [activePage, setActivePage] = useState('Articles');
   const [title, setTitle] = useState('Enjoy our full collection of articles!');
-  const [date, setDate] = useState('');
 
   const defaultUser = {username: 'tickle122'}
   
@@ -37,13 +35,11 @@ function App() {
         setTitle('Find a topic');
         break;
       default:
+        setTitle(activePage);
         break;
     }
 
-    const todaysDate = new Date();
-    setDate(formatDate(todaysDate))
-
-  },[loggedIn, defaultUser])
+  },[loggedIn, defaultUser, activePage])
 
   return (
     <div className="App">
@@ -55,8 +51,8 @@ function App() {
           <h1 className="App-page--title">{title}</h1>
         </div>
         <Router>
-          <Articles path="/" />
-          <Topics path="/topics/*" />
+          <Articles path="/" setPage={setActivePage} />
+          <Topics path="/topics/*" setPage={setActivePage} />
           <Article path="/articles/:article_id" user={activeUser} />
           <ErrorPage default code={404} />
         </Router>

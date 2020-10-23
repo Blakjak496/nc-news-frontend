@@ -36,7 +36,7 @@ const Articles = (props) => {
     if (errorCode) return <ErrorPage code={errorCode} />
     else return (
         <div className="articles__container">
-            <ArticleList articlesList={articlesList} sort={sortList}/>
+            <ArticleList articlesList={articlesList} sort={sortList} setPage={props.setPage}/>
         </div>
     )
 }

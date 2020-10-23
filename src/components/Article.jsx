@@ -38,11 +38,11 @@ const Article = ({article_id, user}) => {
     else return (
         <div className="article__container">
             <div className="article__page-header">
-                <h2>Some Title</h2>
+                <h2>{article.title}</h2>
             </div>
             <div className="article__article-wrapper">
                 <ArticleCard article={article} setErrorCode={setErrorCode} />
-                <CommentsCard article_id={article_id} user={user} comments={comments} />
+                <CommentsCard article_id={article_id} user={user} comments={comments} setComments={setComments} />
             </div>
         </div>   
     )

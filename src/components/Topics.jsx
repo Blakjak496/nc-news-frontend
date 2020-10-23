@@ -41,6 +41,7 @@ const Topics = (props) => {
 
     const changeTopic = (event) => {
         setTopic(event.target.id);
+        props.setPage(event.target.id)
     }
 
     if (isLoading) return <Loader loading={isLoading} />
@@ -61,7 +62,7 @@ const Topics = (props) => {
                 <hr className="divider"/>
             </div>
             <Router primary={false}>
-                <ArticleList path="/:topic" articlesList={articlesList} sort={sortList} class={{list: "topics__articles"}} />
+                <ArticleList path="/:topic" articlesList={articlesList} sort={sortList} class={{list: "topics__articles"}} setPage={props.setPage} />
             </Router>
 
         </div>

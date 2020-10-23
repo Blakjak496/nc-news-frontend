@@ -4,7 +4,7 @@ import { BiHeart, BiTime, BiChat } from 'react-icons/bi';
 import {Link} from '@reach/router';
 
 const ArticleList = (props) => {
-    
+    console.log(props.setPage)
     return (
         <div className={props.class ? props.class.list : "articles__list"}>
                 <span className="articles__filter-btn-box">
@@ -20,8 +20,8 @@ const ArticleList = (props) => {
                                 <p className="articles__article-header--topic"><article.topicIcon/> {article.topic} </p>
                                 <p className="articles__article-header--created">{formatDate(article.created_at)} </p>
                             </span>
-                            <span>
-                                <Link className="articles__article-title" to={`/articles/${article.article_id}`}>{article.title} </Link>
+                            <span className="articles__article-title">
+                                <Link className="articles__article-title" to={`/articles/${article.article_id}`} >{article.title} </Link>
                             </span>
                             <span className="articles__article-footer">
                                 <p className="articles__article-footer--counter"><BiHeart/> {article.votes} </p>

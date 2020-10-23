@@ -79,6 +79,7 @@ html {
   margin-top: 3rem;
   padding-bottom: 2rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .App-page--header {
@@ -212,11 +213,15 @@ html {
 
 .articles__article-title {
   display: flex;
-  justify-content: left;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5rem;
   padding: 4px 12px;
   text-decoration: none;
   color: var(--dark-background);
+  height: 100%;
+  width: 100%;
 }
 
 .articles__article-header--created {
@@ -293,7 +298,7 @@ html {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100;
+  width: 100%;
   min-width: 280px;
   margin: 0;
   justify-content: center;
@@ -303,16 +308,16 @@ html {
 .article__page-header {
   display: flex;
   box-sizing: border-box;
-  width: 100vw;
-  height: 5rem;
-  justify-content: left;
-  padding: 4px 12px;
+  width: 90%;
+  margin: 1rem 0;
+  padding: 0;
 }
 
 .article__article-wrapper {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  box-sizing: border-box;
+  width: 100%;
   min-width: 280px;
   justify-content: center;
   align-items: center;
@@ -323,13 +328,14 @@ html {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
   min-height: 280px;
-  margin: 1rem 0 1rem 0;
+  margin: 1rem auto;
   padding: 0;
   border: 1px solid var(--dark-background);
   box-shadow: 0 -1px 16px 4px var(--light-high-contrast-muted);
   background: var(--light-low-contrast-neutral);
+  align-self: flex-start;
 }
 
 .article__article-body {
@@ -342,8 +348,10 @@ html {
 .article__comments--wrapper {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: 25%;
   min-width: 280px;
+  margin: 0 auto;
   border: 1px solid var(--dark-background);
   justify-content: center;
   align-items: center;
@@ -354,12 +362,14 @@ html {
 .article__comments--post {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: 100%;
   text-align: left;
 }
 
 .article__comments-input-box {
   display: flex;
+  box-sizing: border-box;
   width: 100%;
   justify-content: left;
 }
@@ -369,6 +379,7 @@ html {
   height: 2rem;
   background: var(--light-low-contrast-neutral);
   color: var(--dark-background);
+  border: none;
 }
 
 .article__comments-input--invalid {
@@ -379,6 +390,7 @@ html {
   width: 15%;
   background: var(--primary);
   color: var(--light-background);
+  border: none;
 }
 
 .article__comment {

@@ -104,8 +104,9 @@ const postComment = ({
                 setComments(newList);
                 inputBox.value = '';
             })
-            .catch(({response}) => {
-                setErrorCode(response.status);
+            .catch((err) => {
+                console.log(err)
+                // setErrorCode(response.status);
             })
 }
 
