@@ -39,7 +39,7 @@ function App() {
         break;
     }
 
-  },[loggedIn, defaultUser, activePage])
+  },[loggedIn, defaultUser, activePage, activeUser])
 
   return (
     <div className="App">

@@ -41,7 +41,7 @@ const Article = ({article_id, user}) => {
                 <h2>{article.title}</h2>
             </div>
             <div className="article__article-wrapper">
-                <ArticleCard article={article} setErrorCode={setErrorCode} />
+                <ArticleCard article={article} setErrorCode={setErrorCode} user={user} />
                 <CommentsCard article_id={article_id} user={user} comments={comments} setComments={setComments} />
             </div>
         </div>   
