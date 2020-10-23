@@ -1,26 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { postComment as postNewComment, delComment } from './utils/api';
 import formatDate from './utils/utils';
 import Vote from './Vote';
+import UserContext from './UserContext';
 
 
 const CommentsCard = ({
     comments,
     setComments,
     setErrorCode,
-    user,
     article_id,
 
 }) => {
     const [commentText, setCommentText] = useState('');
+    const user = useContext(UserContext);
 
     const postComment = (event) => {
         const inputBox = event.target.previousSibling;
-        if (commentText && user) {
+        if (commentText && user.loggedIn) {
             postNewComment({
                 article_id,
                 commentText,
-                user,
+                user: user.activeUser,
                 comments,
                 inputBox,
                 setComments,
@@ -28,7 +29,7 @@ const CommentsCard = ({
             })
         } else {
             if (!commentText) event.target.previousSibling.classList.add('article__comments-input--invalid');
-            if (!user) alert('You must be logged in to post a comment');
+            if (!user.loggedIn) alert('You must be logged in to post a comment');
         }
         
     }
@@ -72,7 +73,7 @@ const CommentsCard = ({
                                     </span>
                                     <span className="articles__article-footer">
                                         <Vote count={comment.votes} isArticle={false} parentId={comment.comment_id} handleError={setErrorCode} />
-                                        {comment.author === user ? <button id={comment.comment_id} onClick={deleteComment}>Delete</button> : null}
+                                        {comment.author === user.activeUser ? <button id={comment.comment_id} onClick={deleteComment}>Delete</button> : null}
                                     </span>
                                 </div>
                             )

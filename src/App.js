@@ -6,6 +6,7 @@ import Articles from './components/Articles';
 import Article from './components/Article';
 import ErrorPage from './components/errors/ErrorPage'
 import Topics from './components/Topics';
+import { UserProvider } from './components/UserContext';
 
 function App() {
 
@@ -42,26 +43,29 @@ function App() {
   },[loggedIn, defaultUser, activePage, activeUser])
 
   return (
-    <div className="App">
-      <header className="App-header">
-          <Navbar loggedIn={loggedIn} login={handleLogInOut} setPage={setActivePage} />
-      </header>
-      <div className="App-page">
-        <div className="App-page--header">
-          <h1 className="App-page--title">{title}</h1>
+    <UserProvider value={{loggedIn, activeUser}}>
+      <div className="App">
+        <header className="App-header">
+            <Navbar loggedIn={loggedIn} login={handleLogInOut} setPage={setActivePage} />
+        </header>
+        <div className="App-page">
+          <div className="App-page--header">
+            <h1 className="App-page--title">{title}</h1>
+          </div>
+          <Router>
+            <Articles path="/" setPage={setActivePage} />
+            <Topics path="/topics/*" setPage={setActivePage} />
+            <Article path="/articles/:article_id" />
+            <ErrorPage default code={404} />
+          </Router>
         </div>
-        <Router>
-          <Articles path="/" setPage={setActivePage} />
-          <Topics path="/topics/*" setPage={setActivePage} />
-          <Article path="/articles/:article_id" user={activeUser} />
-          <ErrorPage default code={404} />
-        </Router>
-      </div>
-      <div className="App-footer">
-        <p className="App-footer--content">Lovingly created by Will :)</p>
+        <div className="App-footer">
+          <p className="App-footer--content">Lovingly created by Will :)</p>
 
+        </div>
       </div>
-    </div>
+
+    </UserProvider>
   );
 }
 

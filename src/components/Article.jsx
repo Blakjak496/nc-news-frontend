@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import ErrorPage from './errors/ErrorPage';
 import Loader from './Loader';
 import { getArticle, getComments } from './utils/api';
 import ArticleCard from './ArticleCard';
 import CommentsCard from './CommentsCard';
+import UserContext from './UserContext';
 
-const Article = ({article_id, user}) => {
+const Article = ({article_id}) => {
     const [article, setArticle] = useState({});
     const [comments, setComments] = useState([]);
     const [errorCode, setErrorCode] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const user = useContext(UserContext)
 
     
 
@@ -29,7 +31,7 @@ const Article = ({article_id, user}) => {
             setIsLoading,
             setErrorCode
         });
-    }, [article_id, user])
+    }, [article_id])
 
     
 
@@ -41,8 +43,8 @@ const Article = ({article_id, user}) => {
                 <h2>{article.title}</h2>
             </div>
             <div className="article__article-wrapper">
-                <ArticleCard article={article} setErrorCode={setErrorCode} user={user} />
-                <CommentsCard article_id={article_id} user={user} comments={comments} setComments={setComments} />
+                <ArticleCard article={article} setErrorCode={setErrorCode} />
+                <CommentsCard article_id={article_id} comments={comments} setComments={setComments} />
             </div>
         </div>   
     )

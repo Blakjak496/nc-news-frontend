@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {BiHeart, BiUpArrow, BiDownArrow} from 'react-icons/bi';
 import { incVote } from './utils/api';
+import UserContext from './UserContext';
 
 //Still working on changing it to only allow 1 vote
 const Vote = (props) => {
     const [voteCount, setVoteCount] = useState(0);
     const [votedUp, setVotedUp] = useState([]);
     const [votedDown, setVotedDown] = useState([]);
+    const user = useContext(UserContext);
 
-    const checkVoted = (username) => username === props.user;
-    console.log(votedUp, votedDown)
+    const checkVoted = (username) => username === user.activeUser;
+
     useEffect(() => {
         setVoteCount(props.count);
-        
-    }, [props, votedUp, votedDown])
+    }, [props, user])
 
     const handleVote = (event) => {
-        if (props.user) {
+        
+        if (user.loggedIn) {
 
             const increment = Number(event.target.value);
             const parentId = props.parentId;
@@ -33,11 +35,13 @@ const Vote = (props) => {
                         voteCount,
                         handleError
                     })
-                    const newVoteList = [...votedUp, props.user];
-                    setVotedUp(newVoteList);              
+                    const newVoteList = [...votedUp, user.activeUser];
+                    setVotedUp(newVoteList);
+                    const removeOpposite = [...votedDown];
+                    removeOpposite.splice(removeOpposite.indexOf(user.activeUser), 1);
+                    setVotedDown(removeOpposite);           
                 }
-            }
-            else {
+            } else {
                 if (!votedDown.some(checkVoted)) {
                     incVote({
                         isArticle,
@@ -47,13 +51,14 @@ const Vote = (props) => {
                         voteCount,
                         handleError
                     })
-                    const newVoteList = [...votedDown, props.user];
-                    setVotedDown(newVoteList); 
+                    const newVoteList = [...votedDown, user.activeUser];
+                    setVotedDown(newVoteList);
+                    const removeOpposite = [...votedUp];
+                    removeOpposite.splice(removeOpposite.indexOf(user.activeUser), 1);
+                    setVotedUp(removeOpposite);
                 }
             }
         }
-        
-        
     }
 
     return (
